@@ -8,6 +8,8 @@
 - Sign up form
 - Form validation 
 - useRef hook
+- Firebase setUp
+- Deploying our app on production 
 
 
 # Features
@@ -36,3 +38,9 @@
 - useRef hook --> reference of input field over there 
 - regex for email validation 
 - regex for password validation 
+
+# Commonds to deploy our app
+- Install firbase CLI - 'npm install -g firebase-tools'
+- Firebase Login - 'firebase login'
+- Initialize Firebase - 'firebase init' then select Hosting
+- Deploy command - 'firebase deploy'

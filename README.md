@@ -3,8 +3,12 @@
 - create-react-app
 - configure tailwindcss
 - Header
+- Routing of app
 - Login form
-- Sign up
+- Sign up form
+- Form validation 
+- useRef hook
+
 
 # Features
 
@@ -25,3 +29,10 @@
 - NetflixGPT
   - Search Bar
   - Movie Suggestions
+
+
+- 19th August 2025
+
+- useRef hook --> reference of input field over there 
+- regex for email validation 
+- regex for password validation 

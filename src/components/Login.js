@@ -2,6 +2,12 @@ import React from "react";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import { checkValidData } from "../utils/Validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignInForm, SetIsSignInForm] = useState(true);
@@ -14,16 +20,59 @@ const Login = () => {
   const handleButtonClick = () => {
     // Validate the form data
 
-    // console.log(email.current.value);
-    // console.log(password.current.value);
+    let message;
 
-    const message = checkValidData(
-      email.current.value,
-      password.current.value,
-      name.current.value
-    );
-
+    if (isSignInForm) {
+      // For Sign In → no name field
+      message = checkValidData(email.current.value, password.current.value);
+    } else {
+      // For Sign Up → includes name field
+      message = checkValidData(
+        email.current.value,
+        password.current.value,
+        name.current?.value // safe access
+      );
+    }
     SetErrorMessage(message);
+    if (message) return;
+
+    // SignIn SignUp Logic
+
+    if (!isSignInForm) {
+      // Sign Up logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          SetErrorMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      // Sign In logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          SetErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
   };
 
   const toggleSignInForm = () => {
@@ -52,7 +101,7 @@ const Login = () => {
           {!isSignInForm && (
             <input
               ref={name}
-              className="p-4 my-5 w-full bg-gray-300 rounded-md"
+              className="p-4 my-5 w-full bg-gray-500 rounded-md"
               type="text"
               placeholder="Enter your name"
             ></input>
@@ -60,13 +109,13 @@ const Login = () => {
 
           <input
             ref={email}
-            className="p-4 my-5 w-full bg-gray-300 rounded-md"
+            className="p-4 my-5 w-full bg-gray-500 rounded-md"
             type="text"
             placeholder="Email or phone number"
           ></input>
           <input
             ref={password}
-            className="p-4 my-5 w-full bg-gray-300 rounded-md"
+            className="p-4 my-5 w-full bg-gray-500 rounded-md"
             type="text"
             placeholder="Password"
           ></input>

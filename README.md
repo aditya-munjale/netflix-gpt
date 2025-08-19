@@ -2,6 +2,9 @@
 
 - create-react-app
 - configure tailwindcss
+- Header
+- Login form
+- Sign up
 
 # Features
 
@@ -17,7 +20,7 @@
     - Tailer in background
     - Title & Description
     - Movie Suggestions
-      - MovieLists \* N
+      - MovieLists * N
 
 - NetflixGPT
   - Search Bar

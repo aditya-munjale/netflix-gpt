@@ -11,6 +11,8 @@
 - Firebase setUp
 - Deploying our app to production 
 - Create SignUp user Account 
+- Implement Sign In user API
+- Created Redux Store with userSlice 
 
 
 # Features
@@ -34,14 +36,23 @@
   - Movie Suggestions
 
 
-- 19th August 2025
+- # 19th August 2025 # --------------------------------------------------------
 
 - useRef hook --> reference of input field over there 
 - regex for email validation 
 - regex for password validation 
 
-# Commonds to deploy our app
+# Commands to deploy our app
 - Install firbase CLI - 'npm install -g firebase-tools'
 - Firebase Login - 'firebase login'
 - Initialize Firebase - 'firebase init' then select Hosting
 - Deploy command - 'firebase deploy'
+
+
+- # 20th August 2025 # ---------------------------------------------------------
+# Creating Redux Store (appStore) to store user information 
+
+- Created Store
+- Created Slice
+- Added slice reducer to on my store 
+- Providing my store to my body
